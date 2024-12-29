@@ -1,4 +1,5 @@
 from Utils.data_loader import*
+from Utils.visualizer import*
 from Models.graph import*
 from Algorithms.heuristics import*
 from Algorithms.uninformed import*
@@ -82,7 +83,7 @@ def menu():
                 else:
                     print("Nenhum caminho encontrado.")
             elif opcao == 7:
-                print("Saindo...")
+                print("A sair...")
                 break
             else:
                 print("Opção inválida. Tente novamente.")

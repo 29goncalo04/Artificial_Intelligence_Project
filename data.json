@@ -32,12 +32,12 @@
       {"from": "Leiria", "to": "Castelo Branco", "distance": 168, "type": "air", "blocked": false},
 
       {"from": "Santarém", "to": "Leiria", "distance": 110, "type": "air", "blocked": false},
-      {"from": "Santarém", "to": "Castelo Branco", "distance": 158, "type": "air", "blocked": false},
+      {"from": "Santarém", "to": "Castelo Branco", "distance": 158, "type": "road", "blocked": false},
       {"from": "Santarém", "to": "Portalegre", "distance": 163, "type": "air", "blocked": false},
-      {"from": "Santarém", "to": "Évora", "distance": 161, "type": "air", "blocked": false},
+      {"from": "Santarém", "to": "Évora", "distance": 161, "type": "road", "blocked": false},
       {"from": "Santarém", "to": "Setúbal", "distance": 115, "type": "air", "blocked": false},
 
-      {"from": "Setúbal", "to": "Évora", "distance": 100, "type": "air", "blocked": false},
+      {"from": "Setúbal", "to": "Évora", "distance": 100, "type": "road", "blocked": false},
       {"from": "Setúbal", "to": "Beja", "distance": 143, "type": "air", "blocked": false},
 
       {"from": "Coimbra", "to": "Aveiro", "distance": 63, "type": "air", "blocked": false},
@@ -73,9 +73,10 @@
 
       {"from": "Madeira", "to": "Açores", "distance": 993, "type": "air", "blocked": false}      
     ],
-    "vehicles": [
-      {"id": "drone1", "type": "drone", "capacity": 50, "range": 20, "speed": 10},
-      {"id": "truck1", "type": "truck", "capacity": 500, "range": 500, "speed": 5},
-      {"id": "helicopter1", "type": "helicopter", "capacity": 200, "range": 100, "speed": 15}
+    "vehicles": [ 
+      {"type": "drone", "capacity": 5, "range": 15, "speed": 250}, 
+      {"type": "truck", "capacity": 5000, "range": 800, "speed": 70},
+      {"type": "helicopter", "capacity": 1000, "range": 500, "speed": 200},
+      {"type": "ship", "capacity": 30000, "range": 2500, "speed": 40}
     ]
   }  

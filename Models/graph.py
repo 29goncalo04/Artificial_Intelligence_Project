@@ -18,18 +18,19 @@ def create_graph(data):
             priority=zone['priority'],
             population=zone['population'],
             critical_time=zone['critical_time'],
-            location=tuple(zone['location']),  # Converter a lista para tupla
-            weather=generate_weather_conditions()
+            location=tuple(zone['location'])  # Converter a lista para tupla
         )
 
     # Adicionar as arestas com atributos
     for connection in data['connections']:
+        weather=generate_weather_conditions()
         graph.add_edge(
             connection['from'],
             connection['to'],
             distance=connection['distance'],
             type=connection['type'],
-            blocked=connection['blocked']
+            blocked=connection['blocked'],
+            weather=weather
         )
         # Adicionar a aresta reversa automaticamente
         graph.add_edge(
@@ -37,6 +38,7 @@ def create_graph(data):
             connection['from'],
             distance=connection['distance'],
             type=connection['type'],
-            blocked=connection['blocked']
+            blocked=connection['blocked'],
+            weather=weather
         )
     return graph

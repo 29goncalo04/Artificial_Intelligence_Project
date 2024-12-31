@@ -52,56 +52,26 @@ def calculate_travel_time(path, vehicle, graph):
     return total_travel_time
 
 
-def calculate_fastest_vehicles(path, vehicles, graph):
+def calculate_vehicle_in_time(path, tipo, graph, vehicles):
+    # Obtenha o tempo crítico para o caminho (goal)
     critical_time = get_critical_time(graph, path)
-    in_time = []
-    out_of_time = []
+    vehicles_in_time = []
 
     # Iterar sobre os veículos para calcular o tempo de viagem
     for vehicle in vehicles:
-        # Calcular o tempo de viagem para o veículo atual
-        total_travel_time = calculate_travel_time(path, vehicle, graph)
-        total_travel_time = round(total_travel_time)
+        if vehicle['type'] == tipo:  # Filtra os veículos de acordo com o tipo
+            # Calcular o tempo de viagem para o veículo atual
+            total_travel_time = calculate_travel_time(path, vehicle, graph)
+            total_travel_time = round(total_travel_time)
 
-        # Verificar se o veículo chega a tempo
-        if total_travel_time <= critical_time:
-            in_time.append((vehicle, total_travel_time))
-        else:
-            out_of_time.append((vehicle, total_travel_time))
+            # Verificar se o veículo chega a tempo
+            if total_travel_time <= critical_time:
+                vehicles_in_time.append((vehicle, total_travel_time))
 
-    # Ordenar as listas pela capacidade em ordem decrescente
-    in_time.sort(key=lambda x: x[0]['capacity'], reverse=True)
-    out_of_time.sort(key=lambda x: x[0]['capacity'], reverse=True)
+    # Ordenar os veículos pela capacidade em ordem decrescente
+    vehicles_in_time.sort(key=lambda x: x[0]['capacity'], reverse=True)
 
-    return in_time, out_of_time
-
-
-def generate_route_with_refueling(total_distance, vehicles):
-    results = []
-
-    for vehicle in vehicles:
-        remaining_distance = total_distance
-        remaining_range = vehicle['range']
-        route_with_refueling = []
-
-        while remaining_distance > 0:
-            if remaining_distance > remaining_range:
-                # Adiciona um reabastecimento e percorre o máximo permitido pelo veículo.
-                route_with_refueling.append(f"Travel {remaining_range} km")
-                route_with_refueling.append("Refuel")
-                remaining_distance -= remaining_range
-                remaining_range = vehicle['range']  # Reabastece.
-            else:
-                # Último trecho da rota, veículo alcança o destino.
-                route_with_refueling.append(f"Travel {remaining_distance} km")
-                remaining_distance = 0  # Viagem concluída.
-
-        results.append({
-            "vehicle": vehicle['type'],
-            "route_with_refueling": route_with_refueling
-        })
-
-    return results    
+    return vehicles_in_time 
 
 
 

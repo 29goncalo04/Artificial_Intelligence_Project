@@ -119,9 +119,12 @@ def menu():
                 print("\nDistribuição de mantimentos:")
                 start = input("Escreva o nó inicial: ")
                 results = compare_algorithms(grafo, start, vehicles_init)
+                # Dicionário para armazenar os veículos que chegam a tempo para cada cidade
+                vehicles_in_time_for_goal = {}
 
                 # Iterando sobre as cidades (goals)
                 for goal, algorithm_results in results.items():
+                    vehicles_in_time = []
 
                     #print_all_paths(grafo, start, goal, vehicles_init)
 
@@ -132,9 +135,12 @@ def menu():
                         if best_path:
                             print(f"  Veículo: {tipo} | Caminho: {' -> '.join(best_path)} | Custo: {best_cost}")
 
-                            # best_vehicles = enough_fuel(best_cost, vehicles)    #verifica quais têm combustivel suficiente
-
-                            # vehicles_in_time, vehicles_out_of_time = calculate_fastest_vehicles(best_path, best_vehicles, grafo)    #retorna quais chegam a tempo e os que não
+                            vehicle_in_time = calculate_vehicle_in_time(best_path, tipo, grafo, vehicles_init)
+                            if vehicle_in_time:
+                                for vehicle, travel_time in vehicle_in_time:
+                                    vehicles_in_time.append((vehicle, travel_time))
+                                    print(f"    O veículo {vehicle['type']} chega a tempo em {travel_time} minutos")
+                                
 
                             # if vehicles_in_time==[]: print(f"Os meios não chegam a tempo à região {goal}")
                             # else:
@@ -145,6 +151,12 @@ def menu():
                             #    print(f"Veículos usados para ir para {goal}: {used_vehicles}")
                         else:
                             print(f"  Veículo: {tipo} | Nenhum caminho encontrado")
+                    if vehicles_in_time:
+                        vehicles_in_time_for_goal[goal] = vehicles_in_time
+                # for goal, vehicles in vehicles_in_time_for_goal.items():
+                #     print(f"\n{goal}:")
+                #     for vehicle, travel_time in vehicles:
+                #         print(f"      {vehicle['type']} | Tempo de Viagem: {travel_time} minutos")
             elif opcao == 8:
                 print("A sair...")
                 break

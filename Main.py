@@ -88,7 +88,6 @@ def menu():
                     if best_path:
                         vehicles = discard_vehicles_for_road(grafo, best_path, vehicles_init)
                         vehicles = discard_vehicles_for_water(grafo, best_path, vehicles)
-                        vehicles = discard_vehicles_for_blocked_road(grafo, best_path, vehicles)
                         #vehicle_types = [veiculo['type'] for veiculo in vehicles]  
                         #print(f"\n\n\nDistância até {goal}: {best_cost}km")
                         print(f"\n\n\nMelhor caminho para {goal}: {' -> '.join(best_path)}")
@@ -99,19 +98,20 @@ def menu():
                         #print(f"Veículos com combustível para {goal}: {', '.join(vehicle_types)}")
 
                         vehicles_in_time, vehicles_out_of_time = calculate_fastest_vehicles(best_path, best_vehicles, grafo)    #retorna quais chegam a tempo e os que não
-                        #print("Veículos que chegaram a tempo:")
-                        #for vehicle, travel_time in vehicles_in_time:
+                        # print("Veículos que chegaram a tempo:")
+                        # for vehicle, travel_time in vehicles_in_time:
                         #    print(f"Veículo: {vehicle['type']}, Tempo de viagem: {travel_time} unidades de tempo")
 
-                        # Imprimir os veículos que não chegaram a tempo
-                        #print("\nVeículos que não chegaram a tempo:")
-                        #for vehicle, travel_time in vehicles_out_of_time:
+                        # print("\nVeículos que não chegaram a tempo:")
+                        # for vehicle, travel_time in vehicles_out_of_time:
                         #    print(f"Veículo: {vehicle['type']}, Tempo de viagem: {travel_time} unidades de tempo")
-                        population = get_population(grafo, best_path)
-                        used_vehicles, best_time = otimizar_veiculos(population, vehicles_in_time, vehicles_out_of_time)
-                        critical_time = get_critical_time(grafo, best_path)
-                        print(f"O tempo cŕitico para chegar à região {goal} era {critical_time} min e os meios começaram a chegar após {best_time} minutos")
-                        print(f"Veículos usados para ir para {goal}: {used_vehicles}")
+                        if vehicles_in_time==[]: print(f"Os meios não chegam a tempo à região {goal}")
+                        else:
+                            population = get_population(grafo, best_path)
+                            used_vehicles, best_time = otimizar_veiculos(population, vehicles_in_time, vehicles_out_of_time)
+                            critical_time = get_critical_time(grafo, best_path)
+                            print(f"Os meios chegaram em {best_time} minutos à região {goal} e a janela de tempo cŕitica era {critical_time} minutos")
+                            print(f"Veículos usados para ir para {goal}: {used_vehicles}")
                     else:
                         print(f"Não foi encontrado nenhum caminho para {goal}.")
             elif opcao == 8:

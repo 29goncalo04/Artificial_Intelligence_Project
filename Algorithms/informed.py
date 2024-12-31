@@ -24,7 +24,7 @@ def greedy_search(graph, start, goal):
 
         # Adiciona os vizinhos na fila de prioridade
         for neighbor in graph.neighbors(current):
-            if neighbor not in visited:
+            if neighbor not in visited and not graph[current][neighbor]['blocked']:
                 edge_cost = graph[current][neighbor]['distance']
                 neighbor_heuristic = graph.nodes[neighbor]['heuristic']
                 heapq.heappush(pq, (neighbor_heuristic, current_cost + edge_cost, neighbor, path + [neighbor]))
@@ -56,7 +56,7 @@ def a_star_search(graph, start, goal):
 
         # Explorar os vizinhos
         for neighbor in graph.neighbors(current):
-            if neighbor not in visited:
+            if neighbor not in visited and not graph[current][neighbor]['blocked']:
                 edge_cost = graph[current][neighbor]['distance']
                 new_g = g + edge_cost
                 neighbor_heuristic = graph.nodes[neighbor]['heuristic']

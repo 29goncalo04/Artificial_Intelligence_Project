@@ -2,11 +2,13 @@ import networkx as nx
 import random
 
 def generate_weather_conditions():
-    weather_conditions = ["sol", "chuva", "neve", "vento"]
+    weather_conditions = ["sol", "chuva", "neve", "vento", "tempestade"]
     return random.choice(weather_conditions)
 
 def generate_blocked_status(connection, weather):
-    if connection['type'] == "road" and weather != 'sol':
+    if weather == 'tempestade': 
+        return True
+    elif connection['type'] == "road" and weather != 'sol':
         return random.random() <= 0.05  # 5% de chance de estar bloqueada
     else:
         return False

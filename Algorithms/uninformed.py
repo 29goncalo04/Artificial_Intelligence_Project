@@ -17,7 +17,7 @@ def bfs(graph, start, goal):
             return path, cost  # Retorna o caminho e o custo total
 
         for neighbor in graph.neighbors(current):
-            if neighbor not in visited and not graph[current][neighbor]['blocked']:
+            if neighbor not in visited:
                 edge_cost = graph[current][neighbor]['distance']
                 queue.append((neighbor, path + [neighbor], cost + edge_cost))
 
@@ -41,7 +41,7 @@ def dfs(graph, start, goal):
             return path, cost  # Retorna o caminho e o custo total
 
         for neighbor in graph.neighbors(current):
-            if neighbor not in visited and not graph[current][neighbor]['blocked']:
+            if neighbor not in visited:
                 edge_cost = graph[current][neighbor]['distance']
                 stack.append((neighbor, path + [neighbor], cost + edge_cost))
 
@@ -71,7 +71,7 @@ def uniform_cost_search(graph, start, goal):
 
         # Adiciona vizinhos à fila de prioridade
         for neighbor in graph.neighbors(current):
-            if neighbor not in visited and not graph[current][neighbor]['blocked']:
+            if neighbor not in visited:
                 edge_cost = graph[current][neighbor]['distance']
                 heapq.heappush(pq, (cost + edge_cost, neighbor, path + [neighbor]))
 

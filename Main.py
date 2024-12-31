@@ -12,9 +12,9 @@ def menu():
     try:
         file_path = "data.json"
         data = load_data_from_json(file_path)
-        vehicles = data['vehicles']
+        vehicles_init = data['vehicles']
         grafo = create_graph(data)
-        print("Dados carregados e grafo criado com sucesso!")
+        print("Dados carregados e grafo criado com sucesso.")
     except Exception as e:
         print(f"Erro ao carregar os dados: {e}")
         return
@@ -84,11 +84,34 @@ def menu():
                 print("\nDistribuição de mantimentos:")
                 start = input("Escreva o nó inicial: ")
                 results = compare_algorithms(grafo, start)
-                for goal, best_path in results.items():
+                for goal, (best_path, best_cost) in results.items():
                     if best_path:
-                        #print(f"Melhor caminho para {goal}: {' -> '.join(best_path)}")
-                        best_vehicle, best_time = calculate_fastest_vehicle(best_path, vehicles, grafo)
-                        print(f"Melhor veículo para {goal}: {best_vehicle}")
+                        vehicles = discard_vehicles_for_road(grafo, best_path, vehicles_init)
+                        vehicles = discard_vehicles_for_water(grafo, best_path, vehicles)
+                        vehicles = discard_vehicles_for_blocked_road(grafo, best_path, vehicles)
+                        #vehicle_types = [veiculo['type'] for veiculo in vehicles]  
+                        #print(f"\n\n\nDistância até {goal}: {best_cost}km")
+                        print(f"\n\n\nMelhor caminho para {goal}: {' -> '.join(best_path)}")
+                        #print(f"Veículos que fazem o trajeto: {', '.join(vehicle_types)}")                    
+
+                        best_vehicles = enough_fuel(best_cost, vehicles)    #verifica quais têm combustivel suficiente
+                        #vehicle_types = [veiculo['type'] for veiculo in best_vehicles]
+                        #print(f"Veículos com combustível para {goal}: {', '.join(vehicle_types)}")
+
+                        vehicles_in_time, vehicles_out_of_time = calculate_fastest_vehicles(best_path, best_vehicles, grafo)    #retorna quais chegam a tempo e os que não
+                        #print("Veículos que chegaram a tempo:")
+                        #for vehicle, travel_time in vehicles_in_time:
+                        #    print(f"Veículo: {vehicle['type']}, Tempo de viagem: {travel_time} unidades de tempo")
+
+                        # Imprimir os veículos que não chegaram a tempo
+                        #print("\nVeículos que não chegaram a tempo:")
+                        #for vehicle, travel_time in vehicles_out_of_time:
+                        #    print(f"Veículo: {vehicle['type']}, Tempo de viagem: {travel_time} unidades de tempo")
+                        population = get_population(grafo, best_path)
+                        used_vehicles, best_time = otimizar_veiculos(population, vehicles_in_time, vehicles_out_of_time)
+                        critical_time = get_critical_time(grafo, best_path)
+                        print(f"O tempo cŕitico para chegar à região {goal} era {critical_time} min e os meios começaram a chegar após {best_time} minutos")
+                        print(f"Veículos usados para ir para {goal}: {used_vehicles}")
                     else:
                         print(f"Não foi encontrado nenhum caminho para {goal}.")
             elif opcao == 8:

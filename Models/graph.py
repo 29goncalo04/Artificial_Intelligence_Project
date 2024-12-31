@@ -2,11 +2,14 @@ import networkx as nx
 import random
 
 def generate_weather_conditions():
-    """
-    Gera uma condição meteorológica aleatória.
-    """
     weather_conditions = ["sol", "chuva", "neve", "vento"]
     return random.choice(weather_conditions)
+
+def generate_blocked_status(connection, weather):
+    if connection['type'] == "road" and weather != 'sol':
+        return random.random() <= 0.05  # 5% de chance de estar bloqueada
+    else:
+        return False
 
 def create_graph(data):
     graph = nx.DiGraph()  # Grafo direcionado
@@ -24,12 +27,13 @@ def create_graph(data):
     # Adicionar as arestas com atributos
     for connection in data['connections']:
         weather=generate_weather_conditions()
+        blocked_status = generate_blocked_status(connection, weather)
         graph.add_edge(
             connection['from'],
             connection['to'],
             distance=connection['distance'],
             type=connection['type'],
-            blocked=connection['blocked'],
+            blocked=blocked_status,
             weather=weather
         )
         # Adicionar a aresta reversa automaticamente
@@ -38,7 +42,32 @@ def create_graph(data):
             connection['from'],
             distance=connection['distance'],
             type=connection['type'],
-            blocked=connection['blocked'],
+            blocked=blocked_status,
             weather=weather
         )
     return graph
+
+
+
+def has_air_connection(graph, path):
+    for i in range(len(path) - 1):
+        u, v = path[i], path[i + 1]
+        edge_type = graph[u][v].get('type')
+        if edge_type == "air":
+            return True
+    return False
+
+def has_road_connection(graph, path):
+    for i in range(len(path) - 1):
+        u, v = path[i], path[i + 1]
+        edge_type = graph[u][v].get('type')
+        if edge_type == "road":
+            return True
+    return False
+
+def has_blocked_road(graph, path):
+    for i in range(len(path) - 1):
+        u, v = path[i], path[i + 1]
+        if graph[u][v].get('blocked', False):  # Só considera se for "road" e estiver bloqueada
+            return True
+    return False

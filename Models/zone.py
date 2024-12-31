@@ -11,6 +11,17 @@ def get_all_zones(graph):
         })
     return zones
 
+def get_critical_time(graph, path):
+    last_zone = path[-1]
+    zone = graph.nodes[last_zone]
+    return zone.get('critical_time', float('inf'))
+
+
+def get_population(graph, path):
+    last_zone = path[-1]
+    zone = graph.nodes[last_zone]
+    return zone.get('population', None)
+
 
 
 def calculate_zone_priority(graph, weight_priority=0.7, weight_population=0.3):

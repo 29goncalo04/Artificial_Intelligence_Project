@@ -1,82 +1,82 @@
 {
     "zones": [
-      {"id": "Aveiro", "priority": 3, "population": 500, "critical_time": 10, "location":[-0.50,0.61]},
-      {"id": "Beja", "priority": 2, "population": 150, "critical_time": 20, "location":[-0.392,-0.6]},
-      {"id": "Braga", "priority": 1, "population": 380, "critical_time": 15,"location":[-0.46,0.97]},
-      {"id": "Bragança", "priority": 2, "population": 125, "critical_time": 25,"location":[-0.32,0.97]},
-      {"id": "Castelo Branco", "priority": 3, "population": 250, "critical_time": 18,"location":[-0.35,0.36]},
-      {"id": "Coimbra", "priority": 2, "population": 450, "critical_time": 12,"location":[-0.47,0.47]},
-      {"id": "Évora", "priority": 1, "population": 300, "critical_time": 16,"location":[-0.375,-0.168]},
-      {"id": "Faro", "priority": 2, "population": 400, "critical_time": 15, "location":[-0.433,-0.9]},
-      {"id": "Guarda", "priority": 3, "population": 80, "critical_time": 30, "location":[-0.337,0.55]},
-      {"id": "Leiria", "priority": 2, "population": 320, "critical_time": 14, "location":[-0.527,0.34]},
-      {"id": "Lisboa", "priority": 3, "population": 700, "critical_time": 10, "location":[-0.552,-0.028]},
-      {"id": "Portalegre", "priority": 2, "population": 100, "critical_time": 22, "location":[-0.37,0.068]},
-      {"id": "Porto", "priority": 3, "population": 600, "critical_time": 10, "location":[-0.46,0.745]},
-      {"id": "Santarém", "priority": 2, "population": 350, "critical_time": 18, "location":[-0.47,0.188]},
-      {"id": "Setúbal", "priority": 2, "population": 450, "critical_time": 12, "location":[-0.47,-0.42]},
-      {"id": "Viana do Castelo", "priority": 1, "population": 180, "critical_time": 20, "location":[-0.50,1.1]},
-      {"id": "Vila Real", "priority": 2, "population": 140, "critical_time": 20, "location":[-0.39,0.97]},
-      {"id": "Viseu", "priority": 1, "population": 300, "critical_time": 17, "location":[-0.40,0.60]},
-      {"id": "Madeira", "priority": 3, "population": 250, "critical_time": 30, "location":[-0.65,-0.27]},
-      {"id": "Açores", "priority": 2, "population": 150, "critical_time": 30, "location":[-0.65,-0]}
+      {"id": "Aveiro", "priority": 4, "population": 32000, "critical_time": 180, "location":[-0.50,0.61]},
+      {"id": "Beja", "priority": 4, "population": 15000, "critical_time": 175, "location":[-0.392,-0.6]},
+      {"id": "Braga", "priority": 1, "population": 54000, "critical_time": 700,"location":[-0.46,0.97]},
+      {"id": "Bragança", "priority": 5, "population": 12500, "critical_time": 160,"location":[-0.32,0.97]},
+      {"id": "Castelo Branco", "priority": 1, "population": 25000, "critical_time": 720,"location":[-0.35,0.36]},
+      {"id": "Coimbra", "priority": 6, "population": 45000, "critical_time": 120,"location":[-0.47,0.47]},
+      {"id": "Évora", "priority": 2, "population": 30000, "critical_time": 670,"location":[-0.375,-0.168]},
+      {"id": "Faro", "priority": 3, "population": 93000, "critical_time": 530, "location":[-0.433,-0.9]},
+      {"id": "Guarda", "priority": 7, "population": 8000, "critical_time": 100, "location":[-0.337,0.55]},
+      {"id": "Leiria", "priority": 10, "population": 32000, "critical_time": 30, "location":[-0.527,0.34]},
+      {"id": "Lisboa", "priority": 9, "population": 140000, "critical_time": 70, "location":[-0.552,-0.028]},
+      {"id": "Portalegre", "priority": 2, "population": 10000, "critical_time": 650, "location":[-0.37,0.068]},
+      {"id": "Porto", "priority": 5, "population": 102000, "critical_time": 155, "location":[-0.46,0.745]},
+      {"id": "Santarém", "priority": 2, "population": 35000, "critical_time": 640, "location":[-0.47,0.188]},
+      {"id": "Setúbal", "priority": 8, "population": 45000, "critical_time": 80, "location":[-0.47,-0.42]},
+      {"id": "Viana do Castelo", "priority": 2, "population": 4000, "critical_time": 670, "location":[-0.50,1.1]},
+      {"id": "Vila Real", "priority": 5, "population": 14000, "critical_time": 165, "location":[-0.39,0.97]},
+      {"id": "Viseu", "priority": 1, "population": 30000, "critical_time": 725, "location":[-0.40,0.60]},
+      {"id": "Madeira", "priority": 9, "population": 10000, "critical_time": 350, "location":[-0.65,-0.27]},
+      {"id": "Açores", "priority": 10, "population": 15000, "critical_time": 320, "location":[-0.65,-0]}
     ],
     "connections": [
-      {"from": "Lisboa", "to": "Leiria", "distance": 145, "type": "road", "blocked": false},
-      {"from": "Lisboa", "to": "Santarém", "distance": 84, "type": "road", "blocked": false},
-      {"from": "Lisboa", "to": "Setúbal", "distance": 48, "type": "air", "blocked": false},
-      {"from": "Lisboa", "to": "Madeira", "distance": 997, "type": "air", "blocked": false},
-      {"from": "Lisboa", "to": "Açores", "distance": 1446, "type": "air", "blocked": false},
+      {"from": "Lisboa", "to": "Leiria", "distance": 145, "type": "road"},
+      {"from": "Lisboa", "to": "Santarém", "distance": 84, "type": "road"},
+      {"from": "Lisboa", "to": "Setúbal", "distance": 48, "type": "road"},
+      {"from": "Lisboa", "to": "Madeira", "distance": 997, "type": "air"},
+      {"from": "Lisboa", "to": "Açores", "distance": 1446, "type": "air"},
 
-      {"from": "Leiria", "to": "Coimbra", "distance": 77, "type": "air", "blocked": false},
-      {"from": "Leiria", "to": "Castelo Branco", "distance": 168, "type": "air", "blocked": false},
+      {"from": "Leiria", "to": "Coimbra", "distance": 77, "type": "road"},
+      {"from": "Leiria", "to": "Castelo Branco", "distance": 168, "type": "road"},
 
-      {"from": "Santarém", "to": "Leiria", "distance": 110, "type": "air", "blocked": false},
-      {"from": "Santarém", "to": "Castelo Branco", "distance": 158, "type": "road", "blocked": false},
-      {"from": "Santarém", "to": "Portalegre", "distance": 163, "type": "air", "blocked": false},
-      {"from": "Santarém", "to": "Évora", "distance": 161, "type": "road", "blocked": false},
-      {"from": "Santarém", "to": "Setúbal", "distance": 115, "type": "air", "blocked": false},
+      {"from": "Santarém", "to": "Leiria", "distance": 110, "type": "road"},
+      {"from": "Santarém", "to": "Castelo Branco", "distance": 158, "type": "road"},
+      {"from": "Santarém", "to": "Portalegre", "distance": 163, "type": "road"},
+      {"from": "Santarém", "to": "Évora", "distance": 161, "type": "road"},
+      {"from": "Santarém", "to": "Setúbal", "distance": 115, "type": "road"},
 
-      {"from": "Setúbal", "to": "Évora", "distance": 100, "type": "road", "blocked": false},
-      {"from": "Setúbal", "to": "Beja", "distance": 143, "type": "air", "blocked": false},
+      {"from": "Setúbal", "to": "Évora", "distance": 100, "type": "road"},
+      {"from": "Setúbal", "to": "Beja", "distance": 143, "type": "road"},
 
-      {"from": "Coimbra", "to": "Aveiro", "distance": 63, "type": "air", "blocked": false},
-      {"from": "Coimbra", "to": "Viseu", "distance": 94, "type": "air", "blocked": false},
-      {"from": "Coimbra", "to": "Guarda", "distance": 167, "type": "air", "blocked": false},
-      {"from": "Coimbra", "to": "Castelo Branco", "distance": 138, "type": "air", "blocked": false},
+      {"from": "Coimbra", "to": "Aveiro", "distance": 63, "type": "road"},
+      {"from": "Coimbra", "to": "Viseu", "distance": 94, "type": "road"},
+      {"from": "Coimbra", "to": "Guarda", "distance": 167, "type": "road"},
+      {"from": "Coimbra", "to": "Castelo Branco", "distance": 138, "type": "road"},
 
-      {"from": "Castelo Branco", "to": "Guarda", "distance": 97, "type": "air", "blocked": false},
+      {"from": "Castelo Branco", "to": "Guarda", "distance": 97, "type": "road"},
 
-      {"from": "Aveiro", "to": "Viseu", "distance": 85, "type": "air", "blocked": false},
-      {"from": "Aveiro", "to": "Porto", "distance": 75, "type": "air", "blocked": false},
+      {"from": "Aveiro", "to": "Viseu", "distance": 85, "type": "road"},
+      {"from": "Aveiro", "to": "Porto", "distance": 75, "type": "road"},
 
-      {"from": "Viseu", "to": "Porto", "distance": 127, "type": "air", "blocked": false},
-      {"from": "Viseu", "to": "Vila Real", "distance": 96, "type": "air", "blocked": false},
-      {"from": "Viseu", "to": "Bragança", "distance": 197, "type": "air", "blocked": false},
-      {"from": "Viseu", "to": "Guarda", "distance": 76, "type": "air", "blocked": false},
+      {"from": "Viseu", "to": "Porto", "distance": 127, "type": "road"},
+      {"from": "Viseu", "to": "Vila Real", "distance": 96, "type": "road"},
+      {"from": "Viseu", "to": "Bragança", "distance": 197, "type": "road"},
+      {"from": "Viseu", "to": "Guarda", "distance": 76, "type": "road"},
 
-      {"from": "Guarda", "to": "Bragança", "distance": 176, "type": "air", "blocked": false},
+      {"from": "Guarda", "to": "Bragança", "distance": 176, "type": "road"},
 
-      {"from": "Porto", "to": "Braga", "distance": 55, "type": "air", "blocked": false},
-      {"from": "Porto", "to": "Vila Real", "distance": 97, "type": "air", "blocked": false},
+      {"from": "Porto", "to": "Braga", "distance": 55, "type": "road"},
+      {"from": "Porto", "to": "Vila Real", "distance": 97, "type": "road"},
 
-      {"from": "Braga", "to": "Viana do Castelo", "distance": 62, "type": "air", "blocked": false},
-      {"from": "Braga", "to": "Vila Real", "distance": 108, "type": "air", "blocked": false},
+      {"from": "Braga", "to": "Viana do Castelo", "distance": 62, "type": "road"},
+      {"from": "Braga", "to": "Vila Real", "distance": 108, "type": "road"},
       
-      {"from": "Vila Real", "to": "Bragança", "distance": 116, "type": "air", "blocked": false},
+      {"from": "Vila Real", "to": "Bragança", "distance": 116, "type": "road"},
       
-      {"from": "Portalegre", "to": "Évora", "distance": 103, "type": "air", "blocked": false},
+      {"from": "Portalegre", "to": "Évora", "distance": 103, "type": "road"},
 
-      {"from": "Évora", "to": "Beja", "distance": 80, "type": "air", "blocked": false},
+      {"from": "Évora", "to": "Beja", "distance": 80, "type": "road"},
 
-      {"from": "Beja", "to": "Faro", "distance": 147, "type": "air", "blocked": false},
+      {"from": "Beja", "to": "Faro", "distance": 147, "type": "road"},
 
-      {"from": "Madeira", "to": "Açores", "distance": 993, "type": "air", "blocked": false}      
+      {"from": "Madeira", "to": "Açores", "distance": 993, "type": "air"}      
     ],
-    "vehicles": [ 
-      {"type": "drone", "capacity": 5, "range": 15, "speed": 250}, 
-      {"type": "truck", "capacity": 5000, "range": 800, "speed": 70},
-      {"type": "helicopter", "capacity": 1000, "range": 500, "speed": 200},
-      {"type": "ship", "capacity": 30000, "range": 2500, "speed": 40}
+    "vehicles": [
+      {"type": "drone", "capacity": 15, "range": 400, "speed": 200}, 
+      {"type": "camião", "capacity": 5000, "range": 800, "speed": 70},
+      {"type": "helicóptero", "capacity": 1000, "range": 2000, "speed": 400},
+      {"type": "navio", "capacity": 10000, "range": 2500, "speed": 40}
     ]
-  }  
+  }

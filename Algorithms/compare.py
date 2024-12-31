@@ -46,7 +46,7 @@ def compare_algorithms(graph, start):
             best_path = None
 
         # Guardar o resultado
-        results[goal] = best_path
+        results[goal] = best_path, best_cost
 
         sorted_results = dict(sorted(results.items(), key=lambda item: zone_priorities.get(item[0], 0), reverse=True))
 

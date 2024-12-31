@@ -42,20 +42,20 @@
 
       {"from": "Coimbra", "to": "Aveiro", "distance": 63, "type": "road"},
       {"from": "Coimbra", "to": "Viseu", "distance": 94, "type": "road"},
-      {"from": "Coimbra", "to": "Guarda", "distance": 167, "type": "road"},
+      {"from": "Coimbra", "to": "Guarda", "distance": 167, "type": "air"},
       {"from": "Coimbra", "to": "Castelo Branco", "distance": 138, "type": "road"},
 
-      {"from": "Castelo Branco", "to": "Guarda", "distance": 97, "type": "road"},
+      {"from": "Castelo Branco", "to": "Guarda", "distance": 97, "type": "air"},
 
       {"from": "Aveiro", "to": "Viseu", "distance": 85, "type": "road"},
       {"from": "Aveiro", "to": "Porto", "distance": 75, "type": "road"},
 
       {"from": "Viseu", "to": "Porto", "distance": 127, "type": "road"},
       {"from": "Viseu", "to": "Vila Real", "distance": 96, "type": "road"},
-      {"from": "Viseu", "to": "Bragança", "distance": 197, "type": "road"},
+      {"from": "Viseu", "to": "Bragança", "distance": 197, "type": "air"},
       {"from": "Viseu", "to": "Guarda", "distance": 76, "type": "road"},
 
-      {"from": "Guarda", "to": "Bragança", "distance": 176, "type": "road"},
+      {"from": "Guarda", "to": "Bragança", "distance": 176, "type": "air"},
 
       {"from": "Porto", "to": "Braga", "distance": 55, "type": "road"},
       {"from": "Porto", "to": "Vila Real", "distance": 97, "type": "road"},
@@ -74,9 +74,9 @@
       {"from": "Madeira", "to": "Açores", "distance": 993, "type": "air"}      
     ],
     "vehicles": [
-      {"type": "drone", "capacity": 15, "range": 400, "speed": 200}, 
-      {"type": "camião", "capacity": 5000, "range": 800, "speed": 70},
-      {"type": "helicóptero", "capacity": 1000, "range": 2000, "speed": 400},
-      {"type": "navio", "capacity": 10000, "range": 2500, "speed": 40}
+      {"type": "drone", "capacity": 15, "range": 100, "speed": 200}, 
+      {"type": "camião", "capacity": 5000, "range": 150, "speed": 70},
+      {"type": "helicóptero", "capacity": 1000, "range": 140, "speed": 400},
+      {"type": "avião", "capacity": 10000, "range": 3000, "speed": 700}
     ]
   }

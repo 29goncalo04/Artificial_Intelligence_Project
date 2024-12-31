@@ -7,6 +7,36 @@ from Algorithms.uninformed import*
 from Algorithms.informed import*
 from Algorithms.compare import*
 
+
+# def print_all_paths(graph, start, goal, veiculos):
+#     # Para cada goal (cidade de destino), imprime os resultados de todos os algoritmos
+#     print(f"\nCaminhos para a cidade {goal}:")
+    
+#     # Chama os algoritmos e armazena os resultados
+#     bfs_results = bfs(graph, start, goal, veiculos)
+#     a_star_results = a_star_search(graph, start, goal, veiculos)
+#     greedy_results = greedy_search(graph, start, goal, veiculos)
+#     uniform_cost_results = uniform_cost_search(graph, start, goal, veiculos)
+    
+#     # Itera sobre os resultados de todos os algoritmos
+#     for algorithm_name, algorithm_results in {
+#         "BFS": bfs_results,
+#         "A*": a_star_results,
+#         "Greedy": greedy_results,
+#         "Uniform Cost": uniform_cost_results
+#     }.items():
+#         print(f"\nResultados do algoritmo {algorithm_name}:")
+        
+#         # Itera sobre os veículos
+#         for veiculo, (caminho, custo) in algorithm_results.items():
+#             if caminho:
+#                 print(f"  Veículo {veiculo}: Caminho: {caminho}, Custo: {custo}")
+#             else:
+#                 print(f"  Veículo {veiculo}: Nenhum caminho encontrado.")
+
+
+
+
 def menu():
     # Carregar dados do ficheiro JSON
     try:
@@ -39,81 +69,82 @@ def menu():
                 print("\nProcura em Largura (BFS):")
                 start = input("Escreva o nó inicial: ")
                 goal = input("Escreva o nó final: ")
-                path, cost = bfs(grafo, start, goal)
-                if path:
-                    print(f"Caminho encontrado: {' -> '.join(path)}")
-                else:
-                    print("Nenhum caminho encontrado.")
+                resultado = bfs(grafo, start, goal, vehicles_init)
+                for tipo, (best_path, cost) in resultado.items():
+                    if best_path:
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                    else:
+                        print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 3:
                 print("\nProcura em Profundiade (DFS):")
                 start = input("Escreva o nó inicial: ")
                 goal = input("Escreva o nó final: ")
-                path, cost = dfs(grafo, start, goal)
-                if path:
-                    print(f"Caminho encontrado: {' -> '.join(path)}")
-                else:
-                    print("Nenhum caminho encontrado.")
+                resultado = dfs(grafo, start, goal, vehicles_init)
+                for tipo, (best_path, cost) in resultado.items():
+                    if best_path:
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                    else:
+                        print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 4:
                 print("\nProcura com Custo Uniforme:")
                 start = input("Escreva o nó inicial: ")
                 goal = input("Escreva o nó final: ")
-                path, cost = uniform_cost_search(grafo, start, goal)
-                if path:
-                    print(f"Caminho encontrado: {' -> '.join(path)}")
-                else:
-                    print("Nenhum caminho encontrado.")
+                resultado = uniform_cost_search(grafo, start, goal, vehicles_init)
+                for tipo, (best_path, cost) in resultado.items():
+                    if best_path:
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                    else:
+                        print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 5:
                 print("\nProcura Greedy:")
                 start = input("Escreva o nó inicial: ")
                 goal = input("Escreva o nó final: ")
-                path, cost = greedy_search(grafo, start, goal)
-                if path:
-                    print(f"Caminho encontrado: {' -> '.join(path)}")
-                else:
-                    print("Nenhum caminho encontrado.")
+                resultado = greedy_search(grafo, start, goal, vehicles_init)
+                for tipo, (best_path, cost) in resultado.items():
+                    if best_path:
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                    else:
+                        print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 6:
                 print("\nProcura com A*:")
                 start = input("Escreva o nó inicial: ")
                 goal = input("Escreva o nó final: ")
-                path, cost = a_star_search(grafo, start, goal)
-                if path:
-                    print(f"Caminho encontrado: {' -> '.join(path)}")
-                else:
-                    print("Nenhum caminho encontrado.")
+                resultado = a_star_search(grafo, start, goal, vehicles_init)
+                for tipo, (best_path, cost) in resultado.items():
+                    if best_path:
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                    else:
+                        print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 7:
                 print("\nDistribuição de mantimentos:")
                 start = input("Escreva o nó inicial: ")
-                results = compare_algorithms(grafo, start)
-                for goal, (best_path, best_cost) in results.items():
-                    if best_path:
-                        vehicles = discard_vehicles_for_road(grafo, best_path, vehicles_init)
-                        vehicles = discard_vehicles_for_water(grafo, best_path, vehicles)
-                        #vehicle_types = [veiculo['type'] for veiculo in vehicles]  
-                        #print(f"\n\n\nDistância até {goal}: {best_cost}km")
-                        print(f"\n\n\nMelhor caminho para {goal}: {' -> '.join(best_path)}")
-                        #print(f"Veículos que fazem o trajeto: {', '.join(vehicle_types)}")                    
+                results = compare_algorithms(grafo, start, vehicles_init)
 
-                        best_vehicles = enough_fuel(best_cost, vehicles)    #verifica quais têm combustivel suficiente
-                        #vehicle_types = [veiculo['type'] for veiculo in best_vehicles]
-                        #print(f"Veículos com combustível para {goal}: {', '.join(vehicle_types)}")
+                # Iterando sobre as cidades (goals)
+                for goal, algorithm_results in results.items():
 
-                        vehicles_in_time, vehicles_out_of_time = calculate_fastest_vehicles(best_path, best_vehicles, grafo)    #retorna quais chegam a tempo e os que não
-                        # print("Veículos que chegaram a tempo:")
-                        # for vehicle, travel_time in vehicles_in_time:
-                        #    print(f"Veículo: {vehicle['type']}, Tempo de viagem: {travel_time} unidades de tempo")
+                    #print_all_paths(grafo, start, goal, vehicles_init)
 
-                        # print("\nVeículos que não chegaram a tempo:")
-                        # for vehicle, travel_time in vehicles_out_of_time:
-                        #    print(f"Veículo: {vehicle['type']}, Tempo de viagem: {travel_time} unidades de tempo")
-                        if vehicles_in_time==[]: print(f"Os meios não chegam a tempo à região {goal}")
+                    print(f"\nMelhores caminhos para a cidade {goal}:")
+
+                    # Iterando sobre os veículos
+                    for tipo, (best_path, best_cost) in algorithm_results.items():
+                        if best_path:
+                            print(f"  Veículo: {tipo} | Caminho: {' -> '.join(best_path)} | Custo: {best_cost}")
+
+                            # best_vehicles = enough_fuel(best_cost, vehicles)    #verifica quais têm combustivel suficiente
+
+                            # vehicles_in_time, vehicles_out_of_time = calculate_fastest_vehicles(best_path, best_vehicles, grafo)    #retorna quais chegam a tempo e os que não
+
+                            # if vehicles_in_time==[]: print(f"Os meios não chegam a tempo à região {goal}")
+                            # else:
+                            #    population = get_population(grafo, best_path)
+                            #    used_vehicles, best_time = otimizar_veiculos(population, vehicles_in_time, vehicles_out_of_time)
+                            #    critical_time = get_critical_time(grafo, best_path)
+                            #    print(f"Os meios chegaram em {best_time} minutos à região {goal} e a janela de tempo cŕitica era {critical_time} minutos")
+                            #    print(f"Veículos usados para ir para {goal}: {used_vehicles}")
                         else:
-                            population = get_population(grafo, best_path)
-                            used_vehicles, best_time = otimizar_veiculos(population, vehicles_in_time, vehicles_out_of_time)
-                            critical_time = get_critical_time(grafo, best_path)
-                            print(f"Os meios chegaram em {best_time} minutos à região {goal} e a janela de tempo cŕitica era {critical_time} minutos")
-                            print(f"Veículos usados para ir para {goal}: {used_vehicles}")
-                    else:
-                        print(f"Não foi encontrado nenhum caminho para {goal}.")
+                            print(f"  Veículo: {tipo} | Nenhum caminho encontrado")
             elif opcao == 8:
                 print("A sair...")
                 break

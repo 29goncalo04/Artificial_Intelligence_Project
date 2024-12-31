@@ -3,7 +3,8 @@ import random
 
 def generate_weather_conditions():
     weather_conditions = ["sol", "chuva", "neve", "vento", "tempestade"]
-    return random.choice(weather_conditions)
+    probabilities = [0.24, 0.24, 0.24, 0.24, 0.04]  # Pesos correspondentes a cada condição
+    return random.choices(weather_conditions, weights=probabilities, k=1)[0]
 
 def generate_blocked_status(connection, weather):
     if weather == 'tempestade': 

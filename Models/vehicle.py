@@ -76,54 +76,32 @@ def calculate_fastest_vehicles(path, vehicles, graph):
     return in_time, out_of_time
 
 
-def enough_fuel(distance, vehicles):
-    best_vehicles = []
+def generate_route_with_refueling(total_distance, vehicles):
+    results = []
+
     for vehicle in vehicles:
-        if vehicle['range'] >= distance:
-            best_vehicles.append(vehicle)  # Adiciona o tipo do veículo à lista
-    return best_vehicles
+        remaining_distance = total_distance
+        remaining_range = vehicle['range']
+        route_with_refueling = []
 
+        while remaining_distance > 0:
+            if remaining_distance > remaining_range:
+                # Adiciona um reabastecimento e percorre o máximo permitido pelo veículo.
+                route_with_refueling.append(f"Travel {remaining_range} km")
+                route_with_refueling.append("Refuel")
+                remaining_distance -= remaining_range
+                remaining_range = vehicle['range']  # Reabastece.
+            else:
+                # Último trecho da rota, veículo alcança o destino.
+                route_with_refueling.append(f"Travel {remaining_distance} km")
+                remaining_distance = 0  # Viagem concluída.
 
-# def generate_route_with_refueling(total_distance, vehicles):
-#     results = []
+        results.append({
+            "vehicle": vehicle['type'],
+            "route_with_refueling": route_with_refueling
+        })
 
-#     for vehicle in vehicles:
-#         remaining_distance = total_distance
-#         remaining_range = vehicle['range']
-#         route_with_refueling = []
-
-#         while remaining_distance > 0:
-#             if remaining_distance > remaining_range:
-#                 # Adiciona um reabastecimento e percorre o máximo permitido pelo veículo.
-#                 route_with_refueling.append(f"Travel {remaining_range} km")
-#                 route_with_refueling.append("Refuel")
-#                 remaining_distance -= remaining_range
-#                 remaining_range = vehicle['range']  # Reabastece.
-#             else:
-#                 # Último trecho da rota, veículo alcança o destino.
-#                 route_with_refueling.append(f"Travel {remaining_distance} km")
-#                 remaining_distance = 0  # Viagem concluída.
-
-#         results.append({
-#             "vehicle": vehicle['type'],
-#             "route_with_refueling": route_with_refueling
-#         })
-
-#     return results    
-
-
-
-
-def discard_vehicles_for_road(graph, path, vehicles):
-    if(has_air_connection(graph, path)):
-        vehicles = [vehicle for vehicle in vehicles if vehicle.get('type') != 'camião']
-    return vehicles
-
-def discard_vehicles_for_water(graph, path, vehicles):
-    if(has_road_connection(graph, path)):
-        vehicles = [vehicle for vehicle in vehicles if vehicle.get('type') != 'navio']
-    return vehicles
-
+    return results    
 
 
 

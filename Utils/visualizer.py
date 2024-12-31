@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def draw_graph(graph):
     """
-    Desenha o grafo com a informação de bloqueio e clima (weather) das conexões.
+    Desenha o grafo com a informação de bloqueio, clima (weather) e tipo (type) das conexões.
 
     Args:
         graph: Grafo a ser desenhado.
@@ -23,9 +23,9 @@ def draw_graph(graph):
         font_size=10, font_weight='bold', edge_color='gray', arrows=True
     )
 
-    # Criar os rótulos das arestas incluindo distância, status de bloqueio e clima
+    # Criar os rótulos das arestas incluindo distância, status de bloqueio, clima e tipo
     edge_labels = {
-        (u, v): f"{d['distance']} km\n{'Bloqueada' if d['blocked'] else ''}\n{d['weather']}"
+        (u, v): f"{d['distance']} km\n{'Bloqueada' if d['blocked'] else ''}\n{d['weather']}\n{d['type']}"
         for u, v, d in graph.edges(data=True)
     }
 

@@ -7,36 +7,6 @@ from Algorithms.uninformed import*
 from Algorithms.informed import*
 from Algorithms.compare import*
 
-
-# def print_all_paths(graph, start, goal, veiculos):
-#     # Para cada goal (cidade de destino), imprime os resultados de todos os algoritmos
-#     print(f"\nCaminhos para a cidade {goal}:")
-    
-#     # Chama os algoritmos e armazena os resultados
-#     bfs_results = bfs(graph, start, goal, veiculos)
-#     a_star_results = a_star_search(graph, start, goal, veiculos)
-#     greedy_results = greedy_search(graph, start, goal, veiculos)
-#     uniform_cost_results = uniform_cost_search(graph, start, goal, veiculos)
-    
-#     # Itera sobre os resultados de todos os algoritmos
-#     for algorithm_name, algorithm_results in {
-#         "BFS": bfs_results,
-#         "A*": a_star_results,
-#         "Greedy": greedy_results,
-#         "Uniform Cost": uniform_cost_results
-#     }.items():
-#         print(f"\nResultados do algoritmo {algorithm_name}:")
-        
-#         # Itera sobre os veículos
-#         for veiculo, (caminho, custo) in algorithm_results.items():
-#             if caminho:
-#                 print(f"  Veículo {veiculo}: Caminho: {caminho}, Custo: {custo}")
-#             else:
-#                 print(f"  Veículo {veiculo}: Nenhum caminho encontrado.")
-
-
-
-
 def menu():
     # Carregar dados do ficheiro JSON
     try:
@@ -126,37 +96,29 @@ def menu():
                 for goal, algorithm_results in results.items():
                     vehicles_in_time = []
 
-                    #print_all_paths(grafo, start, goal, vehicles_init)
-
                     print(f"\nMelhores caminhos para a cidade {goal}:")
 
                     # Iterando sobre os veículos
                     for tipo, (best_path, best_cost) in algorithm_results.items():
                         if best_path:
                             print(f"  Veículo: {tipo} | Caminho: {' -> '.join(best_path)} | Custo: {best_cost}")
-
                             vehicle_in_time = calculate_vehicle_in_time(best_path, tipo, grafo, vehicles_init)
                             if vehicle_in_time:
                                 for vehicle, travel_time in vehicle_in_time:
                                     vehicles_in_time.append((vehicle, travel_time))
                                     print(f"    O veículo {vehicle['type']} chega a tempo em {travel_time} minutos")
-                                
-
-                            # if vehicles_in_time==[]: print(f"Os meios não chegam a tempo à região {goal}")
-                            # else:
-                            #    population = get_population(grafo, best_path)
-                            #    used_vehicles, best_time = otimizar_veiculos(population, vehicles_in_time, vehicles_out_of_time)
-                            #    critical_time = get_critical_time(grafo, best_path)
-                            #    print(f"Os meios chegaram em {best_time} minutos à região {goal} e a janela de tempo cŕitica era {critical_time} minutos")
-                            #    print(f"Veículos usados para ir para {goal}: {used_vehicles}")
+                            else:
+                                    print(f"    O veículo {tipo} não chega a tempo")
                         else:
                             print(f"  Veículo: {tipo} | Nenhum caminho encontrado")
                     if vehicles_in_time:
                         vehicles_in_time_for_goal[goal] = vehicles_in_time
-                # for goal, vehicles in vehicles_in_time_for_goal.items():
-                #     print(f"\n{goal}:")
-                #     for vehicle, travel_time in vehicles:
-                #         print(f"      {vehicle['type']} | Tempo de Viagem: {travel_time} minutos")
+                        population = get_population(grafo, best_path)
+                        used_vehicles= otimizar_veiculos(population, vehicles_in_time)
+                        formatted_vehicles = ', '.join([f"{quantidade} x {tipo}" for tipo, quantidade in used_vehicles])
+                        print(f"Veículos usados para ir para {goal}: {formatted_vehicles}")
+                    else:
+                        print(f"Nenhum veículo chega a tempo a {goal}")
             elif opcao == 8:
                 print("A sair...")
                 break

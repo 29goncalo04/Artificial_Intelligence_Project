@@ -13,7 +13,7 @@ def bfs(graph, start, goal, veiculos):
                 continue
             visited.add(current)
             if current == goal:
-                resultados[tipo] = (path, cost)  # Altere para uma tupla
+                resultados[tipo] = (path, cost)
                 break
             for neighbor in graph.neighbors(current):
                 edge = graph[current][neighbor]
@@ -35,8 +35,6 @@ def bfs(graph, start, goal, veiculos):
     return resultados
 
 
-
-
 def dfs(graph, start, goal, veiculos):
     resultados = {}
     for veiculo in veiculos:
@@ -50,7 +48,7 @@ def dfs(graph, start, goal, veiculos):
                 continue
             visited.add(current)
             if current == goal:
-                resultados[tipo] = (path, cost)  # Altere para uma tupla
+                resultados[tipo] = (path, cost)
                 break
             for neighbor in graph.neighbors(current):
                 edge = graph[current][neighbor]
@@ -72,8 +70,6 @@ def dfs(graph, start, goal, veiculos):
     return resultados
 
 
-
-
 def uniform_cost_search(graph, start, goal, veiculos):
     resultados = {}
     for veiculo in veiculos:
@@ -89,7 +85,7 @@ def uniform_cost_search(graph, start, goal, veiculos):
                 continue
             visited.add(current)
             if current == goal:
-                resultados[tipo] = (path, cost)  # Altere para uma tupla
+                resultados[tipo] = (path, cost)
                 break
             # Adiciona vizinhos à fila de prioridade
             for neighbor in graph.neighbors(current):

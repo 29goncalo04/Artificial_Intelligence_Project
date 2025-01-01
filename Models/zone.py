@@ -11,6 +11,7 @@ def get_all_zones(graph):
         })
     return zones
 
+
 def get_critical_time(graph, path):
     last_zone = path[-1]
     zone = graph.nodes[last_zone]
@@ -23,23 +24,10 @@ def get_population(graph, path):
     return zone.get('population', None)
 
 
-
 def calculate_zone_priority(graph, weight_priority=0.7, weight_population=0.3):
-    """
-    Calcula o grau de prioridade para cada zona usando 'priority' e 'population'.
-    
-    Args:
-        zones (list): Lista de zonas com 'priority' e 'population'.
-        weight_priority (float): Peso da prioridade (default = 0.7).
-        weight_population (float): Peso da população (default = 0.3).
-    
-    Returns:
-        dict: Um dicionário com o ID da zona e o grau de prioridade.
-    """
-
     zones = get_all_zones(graph)
 
-    # Encontrar o maior valor de população para normalização
+    # Encontrar o maior valor de população
     max_population = max(zone['population'] for zone in zones)
 
     # Calcular o grau de prioridade para cada zona
@@ -48,7 +36,6 @@ def calculate_zone_priority(graph, weight_priority=0.7, weight_population=0.3):
         priority = zone['priority']
         population = zone['population']
 
-        # Normalizar a população
         population_scaled = population / max_population
 
         # Calcular o grau de prioridade usando pesos

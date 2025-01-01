@@ -6,21 +6,7 @@ def get_vehicle_speed(vehicle):
 
 
 def calculate_travel_time(path, vehicle, graph):
-    """
-    Calcula o tempo total de viagem para um caminho específico levando em conta
-    as condições meteorológicas de cada conexão.
-
-    Args:
-        path (list): Lista de cidades ou zonas que formam o caminho (ex: ['Lisboa', 'Leiria', 'Coimbra', 'Aveiro', 'Porto']).
-        vehicle_speed (float): Velocidade do veículo (em km/h).
-        graph (networkx.DiGraph): O grafo contendo as conexões e as condições meteorológicas associadas.
-
-    Returns:
-        float: O tempo total de viagem em minutos.
-    """
-
     vehicle_speed = get_vehicle_speed(vehicle)
-
     total_travel_time = 0.0
 
     # Iterar sobre as conexões entre as cidades no caminho
@@ -28,10 +14,9 @@ def calculate_travel_time(path, vehicle, graph):
         start = path[i]
         end = path[i + 1]
 
-        # Verificar se a aresta existe entre as cidades
         distance = graph[start][end]['distance']
         weather = graph[start][end]['weather']
-        # Definir o fator meteorológico baseado nas condições
+
         if weather == "sol":
             weather_factor = 1.0  # Sem impacto
         elif weather == "chuva":
@@ -47,19 +32,17 @@ def calculate_travel_time(path, vehicle, graph):
         # Calcular o tempo de viagem para essa conexão
         travel_time = distance / adjusted_speed
         total_travel_time += travel_time
-
     total_travel_time *= 60
     return total_travel_time
 
 
 def calculate_vehicle_in_time(path, tipo, graph, vehicles):
-    # Obtenha o tempo crítico para o caminho (goal)
     critical_time = get_critical_time(graph, path)
     vehicles_in_time = []
 
     # Iterar sobre os veículos para calcular o tempo de viagem
     for vehicle in vehicles:
-        if vehicle['type'] == tipo:  # Filtra os veículos de acordo com o tipo
+        if vehicle['type'] == tipo:
             # Calcular o tempo de viagem para o veículo atual
             total_travel_time = calculate_travel_time(path, vehicle, graph)
             total_travel_time = round(total_travel_time)
@@ -67,14 +50,7 @@ def calculate_vehicle_in_time(path, tipo, graph, vehicles):
             # Verificar se o veículo chega a tempo
             if total_travel_time <= critical_time:
                 vehicles_in_time.append((vehicle, total_travel_time))
-
-    # Ordenar os veículos pela capacidade em ordem decrescente
-    vehicles_in_time.sort(key=lambda x: x[0]['capacity'], reverse=True)
-
     return vehicles_in_time 
-
-
-
 
 
 def otimizar_veiculos(populacao, veiculos_rapidos):
@@ -82,7 +58,6 @@ def otimizar_veiculos(populacao, veiculos_rapidos):
     veiculos_rapidos = sorted(veiculos_rapidos, key=lambda x: x[0]['capacity'], reverse=True)
     total_capacidade = 0
     veiculos_utilizados = {}
-    # Tenta usar veículos rápidos (que chegam a tempo)
     for veiculo, _ in veiculos_rapidos:
         while total_capacidade + veiculo['capacity'] <= populacao:
             total_capacidade += veiculo['capacity']

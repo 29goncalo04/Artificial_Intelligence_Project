@@ -3,8 +3,9 @@ import random
 
 def generate_weather_conditions():
     weather_conditions = ["sol", "chuva", "neve", "vento", "tempestade"]
-    probabilities = [0.24, 0.24, 0.24, 0.24, 0.04]  # Pesos correspondentes a cada condição
+    probabilities = [0.24, 0.24, 0.24, 0.24, 0.04]
     return random.choices(weather_conditions, weights=probabilities, k=1)[0]
+
 
 def generate_blocked_status(connection, weather):
     if weather == 'tempestade': 
@@ -13,6 +14,7 @@ def generate_blocked_status(connection, weather):
         return random.random() <= 0.05  # 5% de chance de estar bloqueada
     else:
         return False
+
 
 def create_graph(data):
     graph = nx.DiGraph()  # Grafo direcionado
@@ -49,28 +51,3 @@ def create_graph(data):
             weather=weather
         )
     return graph
-
-
-
-def has_air_connection(graph, path):
-    for i in range(len(path) - 1):
-        u, v = path[i], path[i + 1]
-        edge_type = graph[u][v].get('type')
-        if edge_type == "air":
-            return True
-    return False
-
-def has_road_connection(graph, path):
-    for i in range(len(path) - 1):
-        u, v = path[i], path[i + 1]
-        edge_type = graph[u][v].get('type')
-        if edge_type == "road":
-            return True
-    return False
-
-def has_blocked_road(graph, path):
-    for i in range(len(path) - 1):
-        u, v = path[i], path[i + 1]
-        if graph[u][v].get('blocked', False):  # Só considera se for "road" e estiver bloqueada
-            return True
-    return False

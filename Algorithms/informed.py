@@ -17,7 +17,7 @@ def greedy_search(graph, start, goal, veiculos):
                 continue
             visited.add(current)
             if current == goal:
-                resultados[tipo] = (path, current_cost)  # Altere para uma tupla
+                resultados[tipo] = (path, current_cost)
                 break
             # Adiciona os vizinhos na fila de prioridade
             for neighbor in graph.neighbors(current):
@@ -39,11 +39,8 @@ def greedy_search(graph, start, goal, veiculos):
                     heapq.heappush(pq, (neighbor_heuristic, current_cost + edge_cost, neighbor, path + [neighbor]))
         # Caso não encontre caminho
         if tipo not in resultados:
-            resultados[tipo] = (None, float('inf'))  # Ajuste para uma tupla
+            resultados[tipo] = (None, float('inf'))
     return resultados
-
-
-
 
 
 def a_star_search(graph, start, goal, veiculos):

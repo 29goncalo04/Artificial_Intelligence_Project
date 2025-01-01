@@ -91,14 +91,9 @@ def menu():
                 results = compare_algorithms(grafo, start, vehicles_init)
                 # Dicionário para armazenar os veículos que chegam a tempo para cada cidade
                 vehicles_in_time_for_goal = {}
-
-                # Iterando sobre as cidades (goals)
                 for goal, algorithm_results in results.items():
                     vehicles_in_time = []
-
                     print(f"\nMelhores caminhos para a cidade {goal}:")
-
-                    # Iterando sobre os veículos
                     for tipo, (best_path, best_cost) in algorithm_results.items():
                         if best_path:
                             print(f"  Veículo: {tipo} | Caminho: {' -> '.join(best_path)} | Custo: {best_cost}")

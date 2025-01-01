@@ -4,12 +4,6 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 def draw_graph(graph):
-    """
-    Desenha o grafo com a informação de bloqueio, clima (weather) e tipo (type) das conexões.
-
-    Args:
-        graph: Grafo a ser desenhado.
-    """
     # Obter as posições dos nós
     pos = {node: graph.nodes[node]['location'] for node in graph.nodes}
     

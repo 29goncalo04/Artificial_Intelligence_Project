@@ -42,7 +42,7 @@ def menu():
                 resultado = bfs(grafo, start, goal, vehicles_init)
                 for tipo, (best_path, cost) in resultado.items():
                     if best_path:
-                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)} | Custo: {cost}")
                     else:
                         print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 3:
@@ -52,7 +52,7 @@ def menu():
                 resultado = dfs(grafo, start, goal, vehicles_init)
                 for tipo, (best_path, cost) in resultado.items():
                     if best_path:
-                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)} | Custo: {cost}")
                     else:
                         print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 4:
@@ -62,7 +62,7 @@ def menu():
                 resultado = uniform_cost_search(grafo, start, goal, vehicles_init)
                 for tipo, (best_path, cost) in resultado.items():
                     if best_path:
-                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)} | Custo: {cost}")
                     else:
                         print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 5:
@@ -72,7 +72,7 @@ def menu():
                 resultado = greedy_search(grafo, start, goal, vehicles_init)
                 for tipo, (best_path, cost) in resultado.items():
                     if best_path:
-                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)} | Custo: {cost}")
                     else:
                         print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 6:
@@ -82,7 +82,7 @@ def menu():
                 resultado = a_star_search(grafo, start, goal, vehicles_init)
                 for tipo, (best_path, cost) in resultado.items():
                     if best_path:
-                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)}")
+                        print(f"Veículo {tipo} | Caminho encontrado: {' -> '.join(best_path)} | Custo: {cost}")
                     else:
                         print(f"Nenhum caminho encontrado para o veículo {tipo}")
             elif opcao == 7:
